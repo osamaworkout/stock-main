@@ -1,23 +1,50 @@
 import 'package:flutter/material.dart';
-import 'package:project1/features/profile/data/models/user%20details%20model/user_details.dart';
-import 'widgets/account widgets/account_view_body.dart';
+import 'package:project1/core/widgets/app_colors.dart';
+import 'package:project1/features/profile/presentation/views/widgets/account%20widgets/listview_item.dart';
 
-class AccountView extends StatefulWidget {
-  const AccountView({super.key});
-  @override
-  State<AccountView> createState() => _AccountViewState();
-}
+import '../../data/models/user details model/user_details.dart';
 
-class _AccountViewState extends State<AccountView> {
+class AccountView extends StatelessWidget {
+  final UserDetailsModel userDetails;
+
+  const AccountView({Key? key, required this.userDetails}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return AccountViewBody(
-      user: UserDetailsModel(
-          email: 'eomar2057@gmail.com',
-          name: 'Esraa omar',
-          id: '',
-          username: '',
-          password: ''),
+    List<UserDetailsModel> accountItems = [
+      UserDetailsModel(
+        username: userDetails.username,
+        name: userDetails.name,
+        email: userDetails.email,
+        password: userDetails.password,
+      ),
+    ];
+
+    return Scaffold(
+      appBar: AppBar(),
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(20),
+              // child: UserDetailsWidget(
+              //   user: userDetails,
+              ),
+            // ),
+            ListView.builder(
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
+              itemCount: accountItems.length,
+              itemBuilder: (context, index) {
+                return ListViewItem(
+                  accountItem: accountItems[index],
+                );
+              },
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
