@@ -10,11 +10,12 @@ class EditAccountView extends StatelessWidget {
     return Scaffold(
       body: EditAccountViewBody(
         user: UserDetailsModel(
-            email: 'eomar2057@gmail.com',
-            name: 'Esraa omar',
-            username: '',
-            password: '',
-           ),
+          email: 'eomar2057@gmail.com',
+          name: 'Esraa omar',
+          username: '',
+          password: '',
+          id: '',
+        ),
       ),
     );
   }

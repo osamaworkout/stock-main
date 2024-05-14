@@ -17,7 +17,8 @@ class CustomAuthenticationTextformfield extends StatelessWidget {
       this.suffixPressed,
       this.radius = 12.0,
       this.width = double.infinity,
-      this.autovalidateMode});
+      this.autovalidateMode,
+      this.enabled});
   final TextEditingController controller;
   final TextInputType type;
   final FormFieldValidator<String>? validate;
@@ -32,6 +33,7 @@ class CustomAuthenticationTextformfield extends StatelessWidget {
   final double radius;
   final double width;
   final AutovalidateMode? autovalidateMode;
+  final bool? enabled;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -52,6 +54,7 @@ class CustomAuthenticationTextformfield extends StatelessWidget {
       validator: validate,
       obscureText: isPassword,
       decoration: InputDecoration(
+        enabled: enabled ?? true,
         disabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(radius)),
           borderSide: const BorderSide(color: Color(AppColors.kPrimaryColor)),

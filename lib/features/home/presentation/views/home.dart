@@ -19,96 +19,112 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(20),
-      child: ListView(
+      child: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
-        children: [
-          Container(height: 30),
-          const Text(
-            "Categories",
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-          ),
-          Container(height: 20),
-          const FliterPart(),
-          Container(height: 20),
-          Container(
-            margin: const EdgeInsets.symmetric(vertical: 10),
-            child: const Text(
-              "best Selling",
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+        child: Column(
+          children: [
+            Container(height: 30),
+            Container(
+              alignment: Alignment.centerLeft,
+              child: const Text(
+                "Categories",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              ),
             ),
-          ),
-          FutureBuilder<List<ProductModel>>(
-            future: apiCon.getAllProducts(),
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return Center(child: CircularProgressIndicator());
-              } else if (snapshot.hasError) {
-                return Center(child: Text('Error: ${snapshot.error}'));
-              } else {
-                List<ProductModel>? products = snapshot.data;
-                return GridView.builder(
-                  itemCount: products?.length ?? 0,
-                  physics: const NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    mainAxisExtent: 359,
-                  ),
-                  itemBuilder: (context, index) {
-                    ProductModel product = products![index];
-                    return InkWell(
-                      onTap: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => ItemsDetails(product: product),
-                          ),
-                        );
-                      },
-                      child: Card(
-                        child: Container(
-                          padding: const EdgeInsets.all(10),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Container(
-                                decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                    image: NetworkImage(product.image), // Use product's image URL
-                                    fit: BoxFit.fill,
+            const SizedBox(height: 20),
+            const FliterPart(
+              categories: ["Bags", "T-Shirts", "Shoes", "SweatShirt", "Other"],
+            ),
+            const SizedBox(height: 30),
+            Container(height: 20),
+            Container(
+              alignment: Alignment.centerLeft,
+              child: const Text(
+                "Gender",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              ),
+            ),
+            const FliterPart(
+              categories: ['Male', 'Female'],
+            ),
+            Container(height: 20),
+            FutureBuilder<List<ProductModel>>(
+              future: apiCon.getAllProducts(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const  Center(child: CircularProgressIndicator());
+                } else if (snapshot.hasError) {
+                  return Center(child: Text('Error: ${snapshot.error}'));
+                } else {
+                  List<ProductModel>? products = snapshot.data;
+                  return GridView.builder(
+                    itemCount: products?.length ?? 0,
+                    physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      mainAxisExtent: 359,
+                    ),
+                    itemBuilder: (context, index) {
+                      ProductModel product = products![index];
+                      return InkWell(
+                        onTap: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  ItemsDetails(product: product),
+                            ),
+                          );
+                        },
+                        child: Card(
+                          child: Container(
+                            padding: const EdgeInsets.all(10),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Container(
+                                  decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                      image: NetworkImage(product
+                                          .image), // Use product's image URL
+                                      fit: BoxFit.fill,
+                                    ),
+                                    borderRadius: BorderRadius.circular(15),
                                   ),
-                                  borderRadius: BorderRadius.circular(15),
+                                  width: double.infinity,
+                                  height: 150,
                                 ),
-                                width: double.infinity,
-                                height: 150,
-                              ),
-                              const SizedBox(height: 10),
-                              Text(
-                                product.name,
-                                style: const TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
+                                const SizedBox(height: 10),
+                                Text(
+                                  product.name,
+                                  style: const TextStyle(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
-                              ),
-                              const SizedBox(height: 10),
-                              Text(
-                                product.description,
-                                style: const TextStyle(fontSize: 14, color: Colors.grey),
-                              ),
-                              const SizedBox(height: 10),
-                              CustomPriceRow(price: product.price),
-                            ],
+                                const SizedBox(height: 10),
+                                Text(
+                                  product.description,
+                                  style: const TextStyle(
+                                      fontSize: 14, color: Colors.grey),
+                                ),
+                                const SizedBox(height: 10),
+                                CustomPriceRow(price: product.price),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                    );
-                  },
-                );
-              }
-            },
-          ),
-        ],
+                      );
+                    },
+                  );
+                }
+              },
+            ),
+          ],
+        ),
       ),
     );
   }

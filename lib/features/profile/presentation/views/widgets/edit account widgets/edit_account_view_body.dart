@@ -18,10 +18,17 @@ class _EditAccountViewBodyState extends State<EditAccountViewBody> {
   late String newName;
   late String newPhotoUrl;
   late TextEditingController nameController;
+  late TextEditingController emailController;
+  late TextEditingController passwordController;
+
   @override
   void initState() {
     nameController = TextEditingController(text: widget.user.name);
+    emailController = TextEditingController(text: widget.user.email);
+    passwordController = TextEditingController(text: widget.user.password);
+
     newName = nameController.text;
+    newPhotoUrl = widget.user.email!;
     super.initState();
   }
 
@@ -40,10 +47,16 @@ class _EditAccountViewBodyState extends State<EditAccountViewBody> {
           children: [
             const EditAccountAppbar(),
             const Gap(40),
+            CustomAddImage(
+              imageUrl: widget.user.email ?? '',
+              onPressed: () {},
+            ),
             const Gap(
               20,
             ),
             EditAccountForm(
+              passwordController: passwordController,
+              emailController: emailController,
               user: widget.user,
               nameController: nameController,
             ),

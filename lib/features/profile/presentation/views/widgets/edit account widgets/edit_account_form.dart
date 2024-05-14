@@ -7,9 +7,13 @@ class EditAccountForm extends StatefulWidget {
     super.key,
     required this.user,
     required this.nameController,
+    required this.emailController,
+    required this.passwordController,
   });
   final UserDetailsModel user;
   final TextEditingController nameController;
+  final TextEditingController emailController;
+  final TextEditingController passwordController;
 
   @override
   State<EditAccountForm> createState() => _EditAccountFormState();
@@ -29,8 +33,28 @@ class _EditAccountFormState extends State<EditAccountForm> {
         children: [
           EditAccountInputDetails(
             autovalidateMode: autovalidateMode,
-            nameController: widget.nameController,
+            controller: widget.nameController,
+            lable: 'name', nameController: null,
           ),
+          EditAccountInputDetails(
+            enabled: false,
+            autovalidateMode: autovalidateMode,
+            controller: widget.emailController,
+            lable: 'E-mail', nameController: null,
+          ),
+          EditAccountInputDetails(
+            autovalidateMode: autovalidateMode,
+            controller: widget.passwordController,
+            lable: 'Password', nameController: null,
+          ),
+          // EditAccountInputDetails(
+          //   autovalidateMode: autovalidateMode,
+          //   nameController: widget.nameController,
+          // ),
+          // EditAccountInputDetails(
+          //   autovalidateMode: autovalidateMode,
+          //   nameController: widget.nameController,
+          // ),
         ],
       ),
     );

@@ -6,17 +6,22 @@ class EditAccountInputDetails extends StatefulWidget {
   const EditAccountInputDetails({
     super.key,
     required this.autovalidateMode,
-    required this.nameController,
+    required this.controller,
+    this.enabled,
+    required this.lable,
+    this.isPassword, required nameController,
   });
   final AutovalidateMode autovalidateMode;
-  final TextEditingController nameController;
+  final TextEditingController controller;
+  final bool? enabled;
+  final bool? isPassword;
+  final String lable;
   @override
   State<EditAccountInputDetails> createState() =>
       _EditAccountInputDetailsState();
 }
 
 class _EditAccountInputDetailsState extends State<EditAccountInputDetails> {
-  bool isPassword = true;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -24,10 +29,13 @@ class _EditAccountInputDetailsState extends State<EditAccountInputDetails> {
       mainAxisSize: MainAxisSize.min,
       children: [
         CustomAuthenticationTextformfield(
+          
+          isPassword: widget.isPassword??false,
+          enabled: widget.enabled,
           autovalidateMode: widget.autovalidateMode,
-          controller: widget.nameController,
+          controller: widget.controller,
           type: TextInputType.name,
-          label: 'name',
+          label: widget.lable,
           validate: (value) {
             if (value?.isEmpty ?? true) {
               return 'Please enter your name';

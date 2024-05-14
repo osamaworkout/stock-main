@@ -18,6 +18,8 @@ class UserDetailsListTile extends StatelessWidget {
         contentPadding: EdgeInsets.zero,
         leading: ClipRRect(
           borderRadius: BorderRadius.circular(27),
+          child: cachedProfilNetworkImage(
+              imageUrl: user.email ?? '', height: 64, width: 64),
         ),
         title: CustomUserName(
           user: user,

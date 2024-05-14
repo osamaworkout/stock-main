@@ -2,14 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:project1/core/widgets/app_colors.dart';
 
 class FliterPart extends StatefulWidget {
-  const FliterPart({super.key});
+  const FliterPart({super.key, required this.categories});
+    final List<String> categories;
+
 
   @override
   State<FliterPart> createState() => _FliterPartState();
 }
 
 class _FliterPartState extends State<FliterPart> {
-  List<String> categories = ["Woman", "Men", "Gifts", "Shop", "Sell"];
 
   int _selectedCategory = -1;
   @override
@@ -38,7 +39,7 @@ class _FliterPartState extends State<FliterPart> {
                   : Colors.white,
             ),
             child: Text(
-              categories[index],
+             widget. categories[index],
               style: TextStyle(
                 color: _selectedCategory == index
                     ? Colors.white
@@ -47,7 +48,7 @@ class _FliterPartState extends State<FliterPart> {
             ),
           ),
         ),
-        itemCount: categories.length,
+        itemCount: widget.categories.length,
       ),
     );
   }
