@@ -12,12 +12,9 @@ class EditAccountView extends StatelessWidget {
         user: UserDetailsModel(
             email: 'eomar2057@gmail.com',
             name: 'Esraa omar',
-            phoneNumber: '0123456789',
-            customerId: '',
-            photo:
-                'https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Unknown_person.jpg/542px-Unknown_person.jpg',
-            token: '',
-            id: ''),
+            username: '',
+            password: '',
+           ),
       ),
     );
   }

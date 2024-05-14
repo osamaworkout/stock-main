@@ -22,7 +22,6 @@ class _EditAccountViewBodyState extends State<EditAccountViewBody> {
   void initState() {
     nameController = TextEditingController(text: widget.user.name);
     newName = nameController.text;
-    newPhotoUrl = widget.user.photo!;
     super.initState();
   }
 
@@ -41,10 +40,6 @@ class _EditAccountViewBodyState extends State<EditAccountViewBody> {
           children: [
             const EditAccountAppbar(),
             const Gap(40),
-            CustomAddImage(
-              imageUrl: widget.user.photo!,
-              onPressed: () {},
-            ),
             const Gap(
               20,
             ),

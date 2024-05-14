@@ -19,6 +19,6 @@ class AppCubit extends Cubit<AppStates> {
     HomeScreen(),
     CartScreen(),
     FavScreen(),
-    AccountView()
+    // AccountView()
   ];
 }

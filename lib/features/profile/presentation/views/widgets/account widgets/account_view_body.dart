@@ -10,7 +10,7 @@ import 'user_details_listtile.dart';
 class AccountViewBody extends StatelessWidget {
   const AccountViewBody(
       {super.key, required this.accountItems, required this.user});
-  final List<AccountModel> accountItems;
+  final List<UserDetailsModel> accountItems;
   final UserDetailsModel user;
   @override
   Widget build(BuildContext context) {

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:project1/core/widgets/app_colors.dart';
 import 'package:project1/features/profile/presentation/views/widgets/account%20widgets/listview_item.dart';
-import '../../data/models/account_tile_model.dart';
-import '../../data/models/user%20details%20model/user_details.dart';
+
+import '../../data/models/user details model/user_details.dart';
 
 class AccountView extends StatelessWidget {
   final UserDetailsModel userDetails;
@@ -11,8 +11,8 @@ class AccountView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<AccountModel> accountItems = [
-      AccountModel(
+    List<UserDetailsModel> accountItems = [
+      UserDetailsModel(
         username: userDetails.username,
         name: userDetails.name,
         email: userDetails.email,

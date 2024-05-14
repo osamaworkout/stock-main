@@ -38,7 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
           FutureBuilder<List<ProductModel>>(
-            future: apiCon.getAllProducts(), // Call getAllProducts to fetch data
+            future: apiCon.getAllProducts(),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return Center(child: CircularProgressIndicator());

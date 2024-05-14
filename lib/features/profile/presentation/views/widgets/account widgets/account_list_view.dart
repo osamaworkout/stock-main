@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:project1/core/widgets/app_colors.dart';
 import '../../../../data/models/account_tile_model.dart';
+import '../../../../data/models/user details model/user_details.dart';
 import 'listview_item.dart';
 
 class AccountListView extends StatelessWidget {
   const AccountListView({Key? key, required this.accountItems}) : super(key: key);
-  final List<AccountModel> accountItems;
+  final List<UserDetailsModel> accountItems;
 
   @override
   Widget build(BuildContext context) {
